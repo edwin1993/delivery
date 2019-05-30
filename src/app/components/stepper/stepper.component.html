@@ -1,0 +1,136 @@
+<!-- Modal -->
+
+<form id="crearEntregaForm" [formGroup]="forma" (ngSubmit)="crearEnvio()" novalidate="novalidate">
+
+    <div class="list-group">
+        <p class="list-group-item list-group-item-action active">Datos Del Remitente</p>
+    </div>
+    <hr>
+  <div>
+    <div class="form-group row">
+      <label class="col-3 col col-form-label">nombres_remitente</label>
+      <div class="col-8">
+        <input class="form-control" type="text" placeholder="nombres_remitente"
+         formControlName="nombres_remitente">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-3 col col-form-label">apellidos_remitente</label>
+      <div class="col-8">
+        <input class="form-control" type="text" placeholder="apellidos_remitente"
+         formControlName="apellidos_remitente">
+      </div>
+    </div>
+    
+          <div class="form-group row">
+      <label class="col-3 col col-form-label">Direccion Remitente</label>
+      <div class="col-8">
+        <input class="form-control" type="text" placeholder="Direccion Remitente"
+         formControlName="direccion_remitente">
+      </div>
+    </div>
+    
+          <div class="form-group row">
+      <label class="col-3 col col-form-label">Telefono Remitente</label>
+      <div class="col-8">
+        <input class="form-control" type="text" placeholder="Telefono Remitente"
+         formControlName="telefono_remitente">
+      </div>
+    </div>
+    
+          <div class="form-group row">
+      <label class="col-3 col col-form-label">Ciudad Remitente</label>
+      <div class="col-8">
+        <input class="form-control" type="text" placeholder="Ciudad Remitente"
+         formControlName="ciudad_remitente">
+      </div>
+    </div>
+
+    <div class="list-group">
+        <p class="list-group-item list-group-item-action active">Datos Del Destinatario</p>
+    </div>
+    <hr>
+    
+          <div class="form-group row">
+      <label class="col-3 col col-form-label">Nombres Destinatario</label>
+      <div class="col-8">
+        <input class="form-control" type="text" placeholder="Nombres Destinatario"
+         formControlName="nombres_destinatario">
+      </div>
+    </div>
+    
+          <div class="form-group row">
+      <label class="col-3 col col-form-label">Apellidos Destinatario</label>
+      <div class="col-8">
+        <input class="form-control" type="text" placeholder="Apellidos Destinatario"
+         formControlName="apellidos_destinatario">
+      </div>
+    </div>
+    
+          <div class="form-group row">
+      <label class="col-3 col col-form-label">Direccion Destinatario</label>
+      <div class="col-8">
+        <input class="form-control" type="text" placeholder="Direccion Destinatario"
+         formControlName="direccion_destinatario">
+      </div>
+    </div>
+    
+          <div class="form-group row">
+      <label class="col-3 col col-form-label">Telefono Destinatario</label>
+      <div class="col-8">
+        <input class="form-control" type="text" placeholder="Telefono Destinatario"
+         formControlName="telefono_destinatario">
+      </div>
+    </div>
+    
+          <div class="form-group row">
+      <label class="col-3 col col-form-label">Ciudad Destinatario</label>
+      <div class="col-8">
+        <input class="form-control" type="text" placeholder="Ciudad Destinatario"
+         formControlName="ciudad_destinatario">
+      </div>
+    </div>
+
+    <div class="list-group">
+        <p class="list-group-item list-group-item-action active">Detalles del Producto</p>
+    </div>
+    <hr>
+    
+          <div class="form-group row">
+      <label class="col-3 col col-form-label">Descripcion Mercancia</label>
+      <div class="col-8">
+        <input class="form-control" type="text" placeholder="Descripcion Mercancia"
+         formControlName="descripcion_mercancia">
+      </div>
+    </div>
+    
+          <div class="form-group row">
+      <label class="col-3 col col-form-label">Peso Mercancia</label>
+      <div class="col-8">
+        <input class="form-control" type="text" placeholder="Peso Mercancia"
+         formControlName="peso_mercancia">
+      </div>
+    </div>
+    
+          <div class="form-group row">
+      <label class="col-3 col col-form-label">Estado Entrega</label>
+      <div class="col-8">
+        <input class="form-control" type="text" placeholder="Estado Entrega"
+         formControlName="estado_entrega">
+      </div>
+    </div>
+
+  </div>
+
+
+<hr>
+
+  <button type="button" class="btn btn-secondary">Cancelar</button>
+  <button type="submit" class="btn btn-success" form="crearEntregaForm">
+    Guardar
+  </button>
+
+  <hr>
+
+</form>

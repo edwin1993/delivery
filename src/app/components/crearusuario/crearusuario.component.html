@@ -1,0 +1,79 @@
+<!-- Modal -->
+<div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="userModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="userModalLabel">
+          <h3><span class="badge badge-success">AGREGAR USUARIO</span></h3>
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+        <form id="crearUsuarioForm" [formGroup]="forma" (ngSubmit)="crearUsuario()" novalidate="novalidate">
+
+          <div>
+
+            <div class="form-group row">
+              <label class="col-2 col col-form-label">Usuario</label>
+              <div class="col-8">
+                <input class="form-control" type="text" placeholder="Usuario" formControlName="nombre">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-2 col col-form-label">Contraseña</label>
+              <div class="col-8">
+                <input class="form-control" type="password" placeholder="Contraseña" formControlName="contrasena">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-2 col col-form-label">Pertenece a</label>
+              <div class="col-8">
+                <select class="form-control" formControlName="fk_persona">
+                  <option selected>Asociar una persona</option>
+                  <option *ngFor="let person of people" [value]="person.id">{{person.nombre}}</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-2 col col-form-label">Rol</label>
+                <div class="col-8">
+                  <select class="form-control" formControlName="fk_rol">
+                    <option selected>Seleccionar un rol</option>
+                    <option *ngFor="let rol of rols" [value]="rol.id">{{rol.nombre}}</option>
+                  </select>
+                </div>
+              </div>
+
+            <div class="form-group row">
+              <label class="col-2 col col-form-label"></label>
+              <div class="col-8">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="activo" formControlName="activo">
+                  <label class="custom-control-label" for="activo">Activo</label>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </form>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" #closeBtn>Cancelar</button>
+        <button type="submit" class="btn btn-success" form="crearUsuarioForm">
+          Guardar
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,674 @@
+CREATE PROCEDURE `updatePrecint` (
+	IN idPk INT, 
+    IN nombre VARCHAR(500),
+    IN indicativo INT,
+    IN fk_tipo INT,
+    IN fk_municipio INT
+)
+BEGIN
+	UPDATE `FastDelivery`.`BARRIO` 
+	SET 
+		`nombre` = nombre,
+		`indicativo` = indicativo,
+		`fk_tipo` = fk_tipo,
+		`fk_municipio` = fk_municipio
+	WHERE (`id` = idPk);
+END
+
+
+
+CREATE PROCEDURE `updateAddress` (
+    IN idPk INT,
+	IN calle VARCHAR(45), 
+    IN carrera VARCHAR(45), 
+    IN casa VARCHAR(45), 
+    IN literal_casa VARCHAR(45), 
+    IN apto VARCHAR(45), 
+    IN completa VARCHAR(100), 
+    IN literal_apto VARCHAR(45), 
+    IN fk_barrio INT
+) 
+BEGIN
+    UPDATE `FastDelivery`.`DIRECCION` 
+    SET 
+        `calle` = calle, 
+        `carrera` = carrera, 
+        `casa` = casa, 
+        `literal_casa` = literal_casa, 
+        `apto` = apto, 
+        `completa` = completa, 
+        `literal_apto` = literal_apto, 
+        `fk_barrio` = fk_barrio
+    WHERE (`id` = idPk);    
+END
+
+
+ ('64', '30', '31', 'A', 'none', 'none', 'A', '1');
+ `call createAddress(${req.body.calle}, ${req.body.carrera}, ${req.body.casa}, ${req.body.literal_casa}, ${req.body.apto}, ${req.body.completa}, ${req.body.literal_apto}, ${req.body.fk_barrio})`;
+
+ `call updateAddress(1, '80', '30', '31', 'B', 'none', 'none', 'B', '1')`;
+
+`call updateAddress( ${req.body.idPk}, ${req.body.calle}, ${req.body.carrera}, ${req.body.casa}, ${req.body.literal_casa}, ${req.body.apto}, ${req.body.completa}, ${req.body.literal_apto}, ${req.body.fk_barrio})`;
+
+
+CREATE PROCEDURE `insertLog` (
+    IN localizacion VARCHAR(45),
+    IN descripcion VARCHAR(500),
+    IN registro VARCHAR(2000),
+    IN proceso VARCHAR(45),
+    IN fecha DATETIME
+)
+BEGIN
+    INSERT INTO `FastDelivery`.`LOGS` 
+        (`localizacion`, `descripcion`, `registro`, `proceso`, `fecha`) 
+    VALUES (localizacion, descripcion, registro, proceso, fecha);
+END
+
+('nodo4', 'lllll', 'try', 'nulo', '2019-05-22');
+
+`call insertLog(${req.body.localizacion}, ${req.body.descripcion}, ${req.body.registro}, ${req.body.proceso}, ${req.body.fecha})`;
+
+localizacion, 
+descripcion, 
+registro, 
+proceso, 
+fecha
+
+
+CREATE PROCEDURE `insertRol` (IN nombre VARCHAR(100), IN alias VARCHAR(100))
+BEGIN
+INSERT INTO `FastDelivery`.`ROL` (`nombre`, `alias`) VALUES ('ADMINISTRADOR', 'ADMIN');
+
+END
+
+call insertRol('RECEPCIONISTA', 'RECEP');
+
+
+CREATE PROCEDURE `createPeople`(
+        IN nombres VARCHAR(100), 
+        IN apellidos VARCHAR(100), 
+        IN documento VARCHAR(100), 
+        IN celular VARCHAR(100), 
+        IN fk_direccion_casa INT, 
+        IN fk_direccion_trabajo INT, 
+        IN fk_tipo INT, 
+        IN fk_referencia INT, 
+        IN fecha_nacimiento DATE, 
+        IN edad INT, 
+        IN EPS VARCHAR(100), 
+        IN email VARCHAR(100), 
+        IN licencia_conducción VARCHAR(100) 
+    ) 
+BEGIN
+    INSERT INTO `FastDelivery`.`PERSONA` (
+        `nombres`, 
+        `apellidos`, 
+        `documento`, 
+        `celular`, 
+        `fk_direccion_casa`, 
+        `fk_direccion_trabajo`, 
+        `fk_tipo`, 
+        `fk_referencia`, 
+        `fecha_nacimiento`, 
+        `edad`, 
+        `EPS`, 
+        `email`, 
+        `licencia_conducción`
+    ) VALUES (
+        nombres, 
+        apellidos, 
+        documento, 
+        celular, 
+        fk_direccion_casa, 
+        fk_direccion_trabajo, 
+        fk_tipo, 
+        fk_referencia, 
+        fecha_nacimiento, 
+        edad, 
+        EPS, 
+        email, 
+        licencia_conducción
+    )
+END
+
+INSERT INTO `FastDelivery`.`PERSONA` (`nombres`, `apellidos`, `documento`, `celular`, `fk_direccion_casa`, `fk_direccion_trabajo`, `fk_tipo`, `fk_referencia`, `fecha_nacimiento`, `edad`, `EPS`, `email`, `licencia_conducción`) VALUES ('Camilo', 'Sexto', '1089263452', '3227465372', '1', '1', '3', '1', '2019-01-01', '30', 'compensar', 'nano@gmail.com', '108965433');
+
+
+ { 
+     
+     "nombres" : "'Camiloxxx'",
+     "apellidos" : "'Sexto'",
+     "documento" : "'1089263452'",
+     "celular" : "'3227465372'",
+     "fk_direccion_casa" : "'1'",
+     "fk_direccion_trabajo" : "'1'",
+     "fk_tipo" : "'3'",
+     "fk_referencia" : "'1'",
+     "fecha_nacimiento" : "'2019-02-02'",
+     "edad" : "'30'",
+     "EPS" : "'compensar'",
+     "email" : "'nano@gamil.com'",
+     "licencia_conducción" : "'108965433'"
+
+
+
+
+CREATE PROCEDURE `isActiveUser` ( 
+    IN nombre VARCHAR(100), 
+    IN contrasena VARCHAR(500) 
+) 
+BEGIN
+    SELECT COUNT(*) 
+    FROM FastDelivery.USUARIO 
+    WHERE activo = 1 AND nombre = nombre AND contrasena = contrasena;
+END
+
+
+
+
+
+
+INSERT INTO `FastDelivery`.`USUARIO` (`nombre`, `contrasena`, `fk_persona`, `activo`, `fk_rol`) VALUES ('steve', '12345', '1', '1', '1');
+
+INSERT INTO `FastDelivery`.`USUARIO` (`nombre`, `contrasena`, `fk_persona`, `activo`, `fk_rol`) VALUES ('steve', '12345', '1', '1', '1');
+
+
+CREATE PROCEDURE `createUser` (
+    IN nombre VARCHAR(100), 
+    IN contrasena VARCHAR(500), 
+    IN fk_persona INT, 
+    IN activo INT, 
+    IN fk_rol INT
+)
+BEGIN
+    INSERT INTO `FastDelivery`.`USUARIO` (
+        `nombre`, 
+        `contrasena`, 
+        `fk_persona`, 
+        `activo`, 
+        `fk_rol`
+    ) VALUES (
+        `nombre`, 
+        `contrasena`, 
+        `fk_persona`, 
+        `activo`, 
+        `fk_rol`
+    );
+END
+
+(`nombre`, `contrasena`, `fk_persona`, `activo`, `fk_rol`)
+
+
+
+(
+        ${req.body.nombre}, ${req.body.contrasena}, ${req.body.fk_persona}, ${req.body.activo}, ${req.body.fk_rol}
+ 
+
+{
+    "nombre" : "jesi", 
+    "contrasena" : "12345", 
+    "fk_persona" : "1", 
+    "activo" : "1", 
+    "fk_rol" : "1"
+}
+
+
+
+INSERT INTO `FastDelivery`.`TOKEN` (`token`, `creacion`, `vencimiento`, `activo`, `fk_user`) VALUES ('b', '2019-01-01', '2019-01-02', '1', '1');
+
+CREATE PROCEDURE `createToken` (
+    IN token VARCHAR(100), 
+    IN creacion DATETIME, 
+    IN vencimiento DATETIME, 
+    IN activo INT(11), 
+    IN fk_user INT(11)
+)
+BEGIN
+    INSERT INTO `FastDelivery`.`TOKEN` (
+        `token`, 
+        `creacion`, 
+        `vencimiento`, 
+        `activo`, 
+        `fk_user`
+    ) VALUES (
+        'b', 
+        '2019-01-01', 
+        '2019-01-02', 
+        '1', 
+        '1'
+    );
+END
+
+CREATE PROCEDURE `createToken` (
+    IN token VARCHAR(100), 
+    IN creacion DATETIME, 
+    IN vencimiento DATETIME, 
+    IN activo INT(11), 
+    IN fk_user INT(11)
+)
+BEGIN
+    INSERT INTO `FastDelivery`.`TOKEN` (
+        `token`, 
+        `creacion`, 
+        `vencimiento`, 
+        `activo`, 
+        `fk_user`
+    ) VALUES (
+        token, 
+        creacion, 
+        vencimiento, 
+        activo, 
+        fk_user
+    );
+END
+
+call createToken('c', '2019-01-01', '2019-01-02', '1', '1');
+call createToken(`token`, `creacion`, `vencimiento`, `activo`, `fk_user`);
+
+
+{
+    "nombre":"asdf",
+    "contrasena":"3333333333",    
+    "activo":"1"
+    "fk_user":"1"
+}
+
+
+
+
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> ID. </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+          </ng-container>
+
+  <!-- id Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> id </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+
+  <!-- nombres Column -->
+  <ng-container matColumnDef="no">mbres
+    <th mat-header-cell *matHeaderCellDef> nombres </th>
+    <td mat-cell *matCellDef="let element"> {{element.nombres}} </td>
+  </ng-container>
+
+  <!-- apellidos Column -->
+  <ng-container matColumnDef="ap">ellidos
+    <th mat-header-cell *matHeaderCellDef> apellidos </th>
+    <td mat-cell *matCellDef="let element"> {{element.apellidos}} </td>
+  </ng-container>
+
+  <!-- documento Column -->
+  <ng-container matColumnDef="do">cumento
+    <th mat-header-cell *matHeaderCellDef> documento </th>
+    <td mat-cell *matCellDef="let element"> {{element.documento}} </td>
+  </ng-container>
+
+  <!-- celular Column -->
+  <ng-container matColumnDef="ce">lular
+    <th mat-header-cell *matHeaderCellDef> celular </th>
+    <td mat-cell *matCellDef="let element"> {{element.celular}} </td>
+  </ng-container>
+
+  <!-- fk_direccion_casa Column -->
+  <ng-container matColumnDef="fk">_direccion_casa
+    <th mat-header-cell *matHeaderCellDef> fk_direccion_casa </th>
+    <td mat-cell *matCellDef="let element"> {{element.fk_direccion_casa}} </td>
+  </ng-container>
+
+  <!-- fk_direccion_trabajo Column -->
+  <ng-container matColumnDef="fk">_direccion_trabajo
+    <th mat-header-cell *matHeaderCellDef> fk_direccion_trabajo </th>
+    <td mat-cell *matCellDef="let element"> {{element.fk_direccion_trabajo}} </td>
+  </ng-container>
+
+  <!-- fk_tipo Column -->
+  <ng-container matColumnDef="fk">_tipo
+    <th mat-header-cell *matHeaderCellDef> fk_tipo </th>
+    <td mat-cell *matCellDef="let element"> {{element.fk_tipo}} </td>
+  </ng-container>
+
+  <!-- fk_referencia Column -->
+  <ng-container matColumnDef="fk">_referencia
+    <th mat-header-cell *matHeaderCellDef> fk_referencia </th>
+    <td mat-cell *matCellDef="let element"> {{element.fk_referencia}} </td>
+  </ng-container>
+
+  <!-- fecha_nacimiento Column -->
+  <ng-container matColumnDef="fe">cha_nacimiento
+    <th mat-header-cell *matHeaderCellDef> fecha_nacimiento </th>
+    <td mat-cell *matCellDef="let element"> {{element.fecha_nacimiento}} </td>
+  </ng-container>
+
+  <!-- edad Column -->
+  <ng-container matColumnDef="ed">ad
+    <th mat-header-cell *matHeaderCellDef> edad </th>
+    <td mat-cell *matCellDef="let element"> {{element.edad}} </td>
+  </ng-container>
+
+  <!-- EPS Column -->
+  <ng-container matColumnDef="EP">S
+    <th mat-header-cell *matHeaderCellDef> EPS </th>
+    <td mat-cell *matCellDef="let element"> {{element.EPS}} </td>
+  </ng-container>
+
+  <!-- email Column -->
+  <ng-container matColumnDef="em">ail
+    <th mat-header-cell *matHeaderCellDef> email </th>
+    <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+  </ng-container>
+
+  <!-- licencia_conduccion Column -->
+  <ng-container matColumnDef="li">cencia_conduccion
+    <th mat-header-cell *matHeaderCellDef> licencia_conduccion </th>
+    <td mat-cell *matCellDef="let element"> {{element.licencia_conduccion}} </td>
+  </ng-container>
+
+
+
+
+nombre varchar(100) 
+contrasena varchar(500) 
+fk_persona int(11) 
+activo int(11) 
+fk_rol int(11)
+
+
+
+          <div class="form-group row">
+      <label class="col-2 col col-form-label">apellidos_remitente</label>
+      <div class="col-8">
+        <input class="form-control" type="text" placeholder="apellidos_remitente" 
+        formControlName="nombres_remitente">
+      </div>
+    </div>
+  </div>
+
+
+
+
+          <div class="form-group row">
+      <label class="col-2 col col-form-label">direccion_remitente</label>
+      <div class="col-8">
+        <input class="form-control" type="text" placeholder="direccion_remitente" 
+        formControlName="nombres_remitente">
+      </div>
+    </div>
+  </div>
+
+
+
+
+          <div class="form-group row">
+      <label class="col-2 col col-form-label">telefono_remitente</label>
+      <div class="col-8">
+        <input class="form-control" type="text" placeholder="telefono_remitente" 
+        formControlName="nombres_remitente">
+      </div>
+    </div>
+  </div>
+
+
+
+
+          <div class="form-group row">
+      <label class="col-2 col col-form-label">ciudad_remitente</label>
+      <div class="col-8">
+        <input class="form-control" type="text" placeholder="ciudad_remitente" 
+        formControlName="nombres_remitente">
+      </div>
+    </div>
+  </div>
+
+
+
+
+          <div class="form-group row">
+      <label class="col-2 col col-form-label">nombres_destinatario</label>
+      <div class="col-8">
+        <input class="form-control" type="text" placeholder="nombres_destinatario" 
+        formControlName="nombres_remitente">
+      </div>
+    </div>
+  </div>
+
+
+
+
+          <div class="form-group row">
+      <label class="col-2 col col-form-label">apellidos_destinatario</label>
+      <div class="col-8">
+        <input class="form-control" type="text" placeholder="apellidos_destinatario" 
+        formControlName="nombres_remitente">
+      </div>
+    </div>
+  </div>
+
+
+
+
+          <div class="form-group row">
+      <label class="col-2 col col-form-label">direccion_destinatario</label>
+      <div class="col-8">
+        <input class="form-control" type="text" placeholder="direccion_destinatario" 
+        formControlName="nombres_remitente">
+      </div>
+    </div>
+  </div>
+
+
+
+
+          <div class="form-group row">
+      <label class="col-2 col col-form-label">telefono_destinatario</label>
+      <div class="col-8">
+        <input class="form-control" type="text" placeholder="telefono_destinatario" 
+        formControlName="nombres_remitente">
+      </div>
+    </div>
+  </div>
+
+
+
+
+          <div class="form-group row">
+      <label class="col-2 col col-form-label">ciudad_destinatario</label>
+      <div class="col-8">
+        <input class="form-control" type="text" placeholder="ciudad_destinatario" 
+        formControlName="nombres_remitente">
+      </div>
+    </div>
+  </div>
+
+
+
+
+          <div class="form-group row">
+      <label class="col-2 col col-form-label">descripcion_mercancia</label>
+      <div class="col-8">
+        <input class="form-control" type="text" placeholder="descripcion_mercancia" 
+        formControlName="nombres_remitente">
+      </div>
+    </div>
+  </div>
+
+
+
+
+          <div class="form-group row">
+      <label class="col-2 col col-form-label">peso_mercancia</label>
+      <div class="col-8">
+        <input class="form-control" type="text" placeholder="peso_mercancia" 
+        formControlName="nombres_remitente">
+      </div>
+    </div>
+  </div>
+
+
+
+
+          <div class="form-group row">
+      <label class="col-2 col col-form-label">estado_entrega</label>
+      <div class="col-8">
+        <input class="form-control" type="text" placeholder="estado_entrega" 
+        formControlName="nombres_remitente">
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      "apellidos_remitente": "$$$$$$",
+      "direccion_remitente": "$$$$$$",
+      "telefono_remitente": "$$$$$$",
+      "ciudad_remitente": "$$$$$$",
+      "nombres_destinatario": "$$$$$$",
+      "apellidos_destinatario": "$$$$$$",
+      "direccion_destinatario": "$$$$$$",
+      "telefono_destinatario": "$$$$$$",
+      "ciudad_destinatario": "$$$$$$",
+      "descripcion_mercancia": "$$$$$$",
+      "peso_mercancia": "$$$$$$",
+      "estado_entrega": "$$$$$$"
+
+
+          <div class="form-group row">
+      <label class="col-2 col col-form-label">apellidos_remitente</label>
+      <div class="col-8">
+        <input class="form-control" type="text" placeholder="apellidos_remitente"
+         formControlName="apellidos_remitente">
+      </div>
+    </div>
+
+          <div class="form-group row">
+      <label class="col-2 col col-form-label">direccion_remitente</label>
+      <div class="col-8">
+        <input class="form-control" type="text" placeholder="direccion_remitente"
+         formControlName="direccion_remitente">
+      </div>
+    </div>
+
+          <div class="form-group row">
+      <label class="col-2 col col-form-label">telefono_remitente</label>
+      <div class="col-8">
+        <input class="form-control" type="text" placeholder="telefono_remitente"
+         formControlName="telefono_remitente">
+      </div>
+    </div>
+
+          <div class="form-group row">
+      <label class="col-2 col col-form-label">ciudad_remitente</label>
+      <div class="col-8">
+        <input class="form-control" type="text" placeholder="ciudad_remitente"
+         formControlName="ciudad_remitente">
+      </div>
+    </div>
+
+          <div class="form-group row">
+      <label class="col-2 col col-form-label">nombres_destinatario</label>
+      <div class="col-8">
+        <input class="form-control" type="text" placeholder="nombres_destinatario"
+         formControlName="nombres_destinatario">
+      </div>
+    </div>
+
+          <div class="form-group row">
+      <label class="col-2 col col-form-label">apellidos_destinatario</label>
+      <div class="col-8">
+        <input class="form-control" type="text" placeholder="apellidos_destinatario"
+         formControlName="apellidos_destinatario">
+      </div>
+    </div>
+
+          <div class="form-group row">
+      <label class="col-2 col col-form-label">direccion_destinatario</label>
+      <div class="col-8">
+        <input class="form-control" type="text" placeholder="direccion_destinatario"
+         formControlName="direccion_destinatario">
+      </div>
+    </div>
+
+          <div class="form-group row">
+      <label class="col-2 col col-form-label">telefono_destinatario</label>
+      <div class="col-8">
+        <input class="form-control" type="text" placeholder="telefono_destinatario"
+         formControlName="telefono_destinatario">
+      </div>
+    </div>
+
+          <div class="form-group row">
+      <label class="col-2 col col-form-label">ciudad_destinatario</label>
+      <div class="col-8">
+        <input class="form-control" type="text" placeholder="ciudad_destinatario"
+         formControlName="ciudad_destinatario">
+      </div>
+    </div>
+
+          <div class="form-group row">
+      <label class="col-2 col col-form-label">descripcion_mercancia</label>
+      <div class="col-8">
+        <input class="form-control" type="text" placeholder="descripcion_mercancia"
+         formControlName="descripcion_mercancia">
+      </div>
+    </div>
+
+          <div class="form-group row">
+      <label class="col-2 col col-form-label">peso_mercancia</label>
+      <div class="col-8">
+        <input class="form-control" type="text" placeholder="peso_mercancia"
+         formControlName="peso_mercancia">
+      </div>
+    </div>
+
+          <div class="form-group row">
+      <label class="col-2 col col-form-label">estado_entrega</label>
+      <div class="col-8">
+        <input class="form-control" type="text" placeholder="estado_entrega"
+         formControlName="estado_entrega">
+      </div>
+    </div>
+
+
+      'apellidos_remitente': new FormControl(),
+      'direccion_remitente': new FormControl(),
+      'telefono_remitente': new FormControl(),
+      'ciudad_remitente': new FormControl(),
+      'nombres_destinatario': new FormControl(),
+      'apellidos_destinatario': new FormControl(),
+      'direccion_destinatario': new FormControl(),
+      'telefono_destinatario': new FormControl(),
+      'ciudad_destinatario': new FormControl(),
+      'descripcion_mercancia': new FormControl(),
+      'peso_mercancia': new FormControl(),
+      'estado_entrega': new FormControl(),

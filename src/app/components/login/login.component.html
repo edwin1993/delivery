@@ -1,0 +1,24 @@
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+
+      <!-- Icon -->
+      <div class="fadeIn first icon-box">
+        <img src="https://storage.googleapis.com/fast-delivery/fast_delivery_logo.png" id="icon" alt="User Icon" />
+      </div>
+  
+      <!-- Login Form -->
+      <form [formGroup]="forma" (ngSubmit)="getAccess()" novalidate="novalidate">
+        <input type="text" id="login" class="fadeIn second" name="login" placeholder="login" formControlName="login">
+        <input type="password" id="password" class="fadeIn third" name="login" placeholder="password" formControlName="password">
+        <input type="submit" class="fadeIn fourth" value="Log In" >
+        <p *ngIf="errorMessage" class="text-danger">Usuario y/o contraseña invalidos</p> 
+      </form>
+  
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <a class="underlineHover" [routerLink]="['home', 'none']">Forgot Password?</a>
+      </div>
+  
+    </div>
+  </div>
